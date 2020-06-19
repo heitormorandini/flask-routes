@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ titulo }}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    table {
+      width: 300px;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #ddd;
+    }
+
+    .tableHeader {
+      font-weight: bold;
+    }
+
+    .smallPrice {
+      background-color: firebrick !important;
+      color: #fff;
+    }
+  </style>
+
+  <script>
+    function redirect(index) {
+      window.location.replace('/info/' + index);
+    }
+  </script>
+</head>
+
+<body>
+  <table>
+    <tr class="tableHeader">
+      <td>Nome</td>
+      <td>Preço</td>
+    </tr>
+    {% for id, nome, preco in prices %}
+    <tr {% if preco < 5 %} class="smallPrice" {% endif %} onclick="redirect({{loop.index0}})">
+      <td>{{ nome }}</td>
+      <td>{{ preco }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+
+</html>
